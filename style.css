@@ -765,21 +765,73 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
 }
 
 @media (max-width: 768px) {
-    .header-top-bar .container, .header-bottom-bar .container { flex-wrap: wrap; row-gap: 15px; }
-    .search-bar { order: 3; width: 100%; max-width: none; }
-    .user-actions { order: 2; width: 100%; justify-content: space-around; }
-    .extra-nav { display: none; }
-    .product-grid { grid-template-columns: repeat(2, 1fr); }
-    .cart-layout { flex-direction: column; }
-    .cart-summary-panel { width: auto; }
+    /* =================================== */
+    /* --- Cấu trúc chung & các trang --- */
+    /* =================================== */
+
+    .header-top-bar .container, .header-bottom-bar .container {
+        flex-wrap: wrap;
+        row-gap: 15px;
+    }
+    .search-bar {
+        order: 3;
+        width: 100%;
+        max-width: none;
+    }
+    .user-actions {
+        order: 2;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .extra-nav {
+        display: none;
+    }
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cart-layout {
+        flex-direction: column;
+    }
+    .cart-summary-panel {
+        width: auto;
+    }
     .slider {
-        height: 300px; 
+        height: 300px;
     }
     body {
-        padding-top: 220px; 
+        padding-top: 220px;
+    }
+    .login-form-wrapper {
+        background-image: none; 
+        background-color: #f0f2f5;
+        padding: 20px 15px;
+        min-height: auto;
+        align-items: flex-start; 
+    }
+    .login-box {
+        width: 100%; 
+        max-width: 420px;
+        padding: 30px 25px; 
+        box-shadow: none; 
+        border: 1px solid #e0e0e0; 
+    }
+    .login-box h2 {
+        font-size: 22px; 
+        margin-bottom: 25px;
+    }
+    .social-login-buttons {
+        flex-direction: column; 
+        gap: 15px;
+    }
+    .login-header-simple .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .auth-switch-text {
+        font-size: 14px;
+        line-height: 1.5;
     }
 }
-
 @media (max-width: 576px) {
     .footer-top .container,
     .footer-bottom .container {
