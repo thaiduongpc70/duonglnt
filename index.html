@@ -1,0 +1,165 @@
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Tiện Lợi WinMart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="new-header">
+        <div class="header-top-bar">
+            <div class="container">
+                <a href="index.html" class="header-logo">
+                    <span class="winmart-logo-main">WinMart</span>
+                </a>
+                <div class="search-bar">
+					<input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
+					<button><i class="fa-solid fa-magnifying-glass"></i></button>				
+						<div class="search-suggestions" id="search-suggestions">
+						</div>
+				</div>
+                <div class="user-actions">
+                    <div class="action-item delivery-action">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Giao Hàng<br><b>Chọn địa chỉ</b></span>
+                    </div>
+                    <a href="gio-hang.html" class="action-item cart-action-box">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Giỏ hàng</span>
+                        <span class="cart-counter">0</span>
+                    </a>
+                    <a href="login.html" class="action-item login-action">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Hội viên</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom-bar">
+            <div class="container">
+                <div class="category-menu-container">
+                    <div class="category-menu-trigger">
+                        <i class="fa-solid fa-bars"></i>
+                        <span>Danh mục sản phẩm</span>
+                    </div>
+                    <ul class="category-dropdown">
+                        <li><a href="products.html?category=sua-tuoi">Sữa tươi</a></li>
+                        <li><a href="products.html?category=rau-cu-trai-cay">Rau, củ, trái cây</a></li>
+                        <li><a href="products.html?category=do-uong-giai-khat">Đồ uống giải khát</a></li>
+                        <li><a href="products.html?category=do-uong-co-con">Đồ uống có cồn</a></li>
+                        <li><a href="products.html?category=thuc-pham-an-lien">Thực phẩm ăn liền</a></li>
+                        <li><a href="products.html?category=gia-vi">Gia vị</a></li>
+                        <li><a href="products.html?category=trung-dau-hu">Trứng - Đậu hũ</a></li>
+                        <li><a href="products.html?category=do-gia-dung">Đồ gia dụng</a></li>
+                        <li><a href="products.html?category=van-phong-pham">Văn phòng phẩm</a></li>
+                        <li><a href="products.html?category=ve-sinh-ca-nhan">Vệ sinh cá nhân</a></li>
+                    </ul>
+                </div>
+                <nav class="extra-nav">
+                    <a href="#"><i class="fa-solid fa-store"></i> Danh sách cửa hàng</a>
+                    <a href="#"><i class="fa-solid fa-newspaper"></i> Tin tức WinMart</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="page-content">
+        <section class="slider-section">
+            <div class="slider">
+                <img src="images/slide1.png" alt="Khuyến mãi" class="slide-image active">
+                <img src="images/slide2.png" alt="Sản phẩm mới" class="slide-image">
+            </div>
+        </section>
+        <section class="products-section">
+            <h2>Sản phẩm nổi bật</h2>
+            <div class="product-grid" id="featured-products-grid">
+                </div>
+        </section>
+        <section class="products-section">
+            <h2>Sản phẩm ưu đãi</h2>
+            <div class="product-grid" id="promo-products-grid">
+                </div>
+        </section>
+        <section class="products-section">
+            <h2>Duy nhất hôm nay</h2>
+            <div class="product-grid" id="today-deal-grid">
+                </div>
+        </section>
+        <section class="products-section">
+            <h2>Giá siêu rẻ</h2>
+            <div class="product-grid" id="super-cheap-grid">
+                </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="footer-column footer-info">
+					<h4>WinMart</h4>
+					<p><strong>Công Ty Cổ Phần Dịch Vụ Thương Mại Tổng Hợp WinMart</strong></p>
+					<p>Mã số doanh nghiệp: 0123456789 Đăng ký lần đầu ngày 20 tháng 05 năm 2025, đăng ký thay đổi lần thứ 2, ngày 30 tháng 05 năm 2025</p>
+					<a href="#" class="bo-cong-thuong-logo">
+						<img src="images/logo-bct.webp" alt="Đã Thông Báo Bộ Công Thương">
+					</a>
+				</div>
+				<div class="footer-column footer-links">
+					<h4>Về chúng tôi</h4>
+					<ul>
+						<li><a href="#">Giới thiệu về WinMart</a></li>
+						<li><a href="#">Danh sách cửa hàng</a></li>
+						<li><a href="#">Quản lý chất lượng</a></li>
+						<li><a href="#">Chính sách bảo mật</a></li>
+						<li><a href="#">Điều khoản và điều kiện giao dịch</a></li>
+					</ul>
+				</div>
+				<div class="footer-column footer-links">
+					<h4>Hỗ trợ khách hàng</h4>
+					<ul>
+						<li><a href="#">Trung tâm hỗ trợ khách hàng</a></li>
+						<li><a href="#">Chính sách giao hàng</a></li>
+						<li><a href="#">Chính sách thanh toán</a></li>
+						<li><a href="#">Chính sách đổi trả</a></li>
+						<li><a href="#">Đánh giá góp ý</a></li>
+						<li><a href="#">Danh sách trúng thưởng</a></li>
+					</ul>
+				</div>
+				<div class="footer-column footer-contact">
+					<h4>Chăm sóc khách hàng</h4>
+					<p>Mua Online: <strong>0852.076.750</strong></p>
+					<p>Email: <strong>thaiduongpc70@gmail.com</strong></p>
+					<h4 style="margin-top: 20px;">Kết nối với chúng tôi</h4>
+					<div class="social-icons">
+						<a href="https://web.facebook.com/?_rdc=3&_rdr#"><i class="fab fa-facebook-f"></i></a>
+						<a href="https://www.youtube.com/watch?v=YY8lBaoeelM"><i class="fab fa-youtube"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="footer-address-column">
+					<strong>Địa chỉ giao dịch Hà Nội:</strong>
+					<p>Công Ty Cổ Phần Dịch Vụ Thương Mại Tổng Hợp WinCommerce, Tầng 6, Toà nhà trung tâm Quốc tế, số 17 Ngô Quyền, Phường Tràng Tiền, Quận Hoàn Kiếm, Thành Phố Hà Nội</p>
+				</div>
+				<div class="footer-address-column">
+					<strong>Trụ sở chính:</strong>
+					<p>Công Ty Cổ Phần Dịch Vụ Thương Mại Tổng Hợp WinCommerce, Số 14 Mai Thế Diên, Phường Nhân Hòa, Huyện Mỹ Hào, Thành phố Hưng Yên, Việt Nam</p>
+				</div>
+				<div class="footer-address-column">
+					<strong>Địa chỉ giao dịch Tp.HCM:</strong>
+					<p>Công Ty Cổ Phần Dịch Vụ Thương Mại Tổng Hợp WinCommerce, Tầng 12, Toà nhà Mplaza Saigon, số 39 Lê Duẩn, Phường Bến Nghé, Quận 1, TP Hồ Chí Minh, Việt Nam</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<a href="https://zalo.me/300086756699856746" class="zalo-float-icon">
+		<img src="images/zalo-icon.png" alt="Zalo">
+	</a>
+    <script src="products-data.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

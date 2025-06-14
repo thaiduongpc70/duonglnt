@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Quản lý Hóa đơn</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <script>if(sessionStorage.getItem('isAdminLoggedIn')!=='true'){window.location.href='admin-login.html';}</script>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h3>Admin Panel</h3></div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Bảng điều khiển</a></li>
+                    <li><a href="products-admin.html"><i class="fa-solid fa-box-archive"></i> Quản lý Sản phẩm</a></li>
+                    <li><a href="orders.html" class="active"><i class="fa-solid fa-receipt"></i> Quản lý Hóa đơn</a></li>
+                    <li><a href="promotions.html"><i class="fa-solid fa-tags"></i> Quản lý Giảm giá</a></li>
+                    <li><a href="stock-in.html"><i class="fa-solid fa-dolly"></i> Quản lý Phiếu nhập</a></li>
+                    <li><a href="stats.html"><i class="fa-solid fa-calculator"></i> Thống kê Chi tiết</a></li>
+                    <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="admin-main-content">
+            <header class="admin-header"><h1>Quản lý Hóa đơn</h1></header>
+            <main class="admin-content">
+                 <div class="table-container">
+                    <h3>Toàn bộ hóa đơn</h3>
+                    <table id="all-orders-table">
+                        <thead><tr><th>Mã HĐ</th><th>Khách hàng</th><th>Ngày</th><th>Tổng tiền</th><th>Trạng thái</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
