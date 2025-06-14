@@ -1,3 +1,9 @@
+body.admin-login-body {
+    padding-top: 0px !important; 
+}
+body.admin-page-body {
+    padding-top: 0px !important; 
+}
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -7,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 140px;
+    padding-top: 150px; /* ĐIỀU CHỈNH: Tăng khoảng cách từ header trên desktop */
 }
 
 .page-content {
@@ -131,7 +137,7 @@ hr {
 .checkout-form-container input[type="text"], input[type="tel"], textarea { width: 100%; padding: 12px; box-sizing: border-box; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
 .payment-option { display: block; }
 .back-to-cart-link { display: inline-block; margin-bottom: 20px; color: #007bff; }
-.login-page-body { background-color: white; }
+.login-page-body { background-color: white; Padding-top:0px !important}
 .login-header-simple { background-color: white; border-bottom: 1px solid #eee; padding: 15px 0; }
 .login-header-simple .container { justify-content: space-between; }
 .login-header-simple .winmart-logo-main { color: #e52025; }
@@ -371,6 +377,7 @@ hr {
     display: flex;
     align-items: center;
     gap: 20px;
+	
 }
 
 .stat-card .icon {
@@ -439,20 +446,23 @@ hr {
 .status.cancelled { background-color: #dc3545; }
 
 .modal-overlay {
-    position: fixed;
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6); 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
+    justify-content: center; 
+    align-items: center;   
+    z-index: 2000;         
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .modal-overlay.hidden {
-    display: none;
+    opacity: 0;
+    pointer-events: none; 
 }
 
 .modal-content {
@@ -734,11 +744,13 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
 .status.completed { background-color: #28a745; }
 .status.pending { background-color: #ffc107; color: #333; }
 .status.cancelled { background-color: #dc3545; }
+
 @media (max-width: 1200px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }
 }
+
 @media (max-width: 992px) {
     .footer-top .container,
     .footer-bottom .container {
@@ -748,7 +760,7 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
     .checkout-form-container, .stats-grid { flex-direction: column; grid-template-columns: 1fr; }
     .checkout-summary, .footer-top .container, .footer-bottom .container { width: auto; grid-template-columns: repeat(2, 1fr);}
     .slider {
-        height: 400px; 
+        height: 350px; 
     }
 }
 
@@ -761,11 +773,10 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
     .cart-layout { flex-direction: column; }
     .cart-summary-panel { width: auto; }
     .slider {
-        height: 350px; 
-		min-width:100px
+        height: 300px; 
     }
     body {
-        padding-top: 250px; 
+        padding-top: 220px; 
     }
 }
 
@@ -775,14 +786,14 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
         grid-template-columns: 1fr;
     }
     .slider {
-        height: 300px; 
+        height: 250px; 
     }
 }
 
 @media (max-width: 480px) {
     .product-grid { grid-template-columns: 1fr; }
     .slider {
-        height: 250px; 
+        height: 200px; 
     }
 }
 
@@ -855,8 +866,8 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    width: 90%;
-    max-width: 350px;
+    width: 90%; 
+    max-width: 350px; 
 }
 
 .alert-box i {

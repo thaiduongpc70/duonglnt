@@ -46,12 +46,25 @@ function addToCart(productId, buttonElement) {
         console.error(`Lỗi: Không tìm thấy sản phẩm với ID: ${productId} trong storage.`);
         return;
     }
+
+    // Kiểm tra số lượng tồn kho trước khi thêm vào giỏ hàng
+    if (productData.quantity !== undefined && productData.quantity <= 0) {
+        showInlineFeedback(buttonElement, 'Hết hàng!');
+        return;
+    }
+
     let cart = getCart();
     const existingProductIndex = cart.findIndex(item => item.id === productId);
 
     if (existingProductIndex > -1) {
+        // Nếu sản phẩm đã có trong giỏ, kiểm tra xem có vượt quá số lượng tồn kho không
+        if (productData.quantity !== undefined && (cart[existingProductIndex].quantity + 1) > productData.quantity) {
+            showInlineFeedback(buttonElement, 'Không đủ hàng trong kho!');
+            return;
+        }
         cart[existingProductIndex].quantity++;
     } else {
+        // Nếu sản phẩm chưa có trong giỏ, thêm mới (với số lượng 1)
         const newCartItem = { ...productData, quantity: 1 };
         cart.push(newCartItem);
     }
@@ -60,8 +73,10 @@ function addToCart(productId, buttonElement) {
     showInlineFeedback(buttonElement, '✔ Đã thêm vào giỏ!');
 }
 
+
 function rebindAddToCartButtons() {
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        // Clone và thay thế nút để loại bỏ các event listener cũ
         const newButton = button.cloneNode(true);
         button.parentNode.replaceChild(newButton, button);
 
@@ -73,8 +88,8 @@ function rebindAddToCartButtons() {
 }
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCounter();
-    const searchInput = document.getElementById('search-input');
-    const suggestionsContainer = document.getElementById('search-suggestions');
+    const searchInput = document.querySelector('.search-bar input[type="text"]'); // Sửa selector
+    const suggestionsContainer = document.getElementById('search-suggestions'); // Đảm bảo element này tồn tại
 
     if (searchInput && suggestionsContainer) {
         searchInput.addEventListener('input', (e) => {
@@ -82,12 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (query.length < 2) {
                 suggestionsContainer.classList.remove('active');
+                suggestionsContainer.innerHTML = ''; // Clear suggestions
                 return;
             }
             const currentProducts = getProductsFromStorage();
             const matchedProducts = currentProducts.filter(product =>
                 product.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(query)
-            ).slice(0, 7);
+            ).slice(0, 7); // Giới hạn số lượng gợi ý
 
             if (matchedProducts.length > 0) {
                 suggestionsContainer.innerHTML = matchedProducts.map(product => {
@@ -96,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         : `${product.price.toLocaleString('vi-VN')} ₫`;
 
                     return `
-                        <a href="products.html?category=${product.categorySlug}" class="suggestion-item" data-product-id="${product.id}">
+                        <a href="products.html?category=${product.categorySlug}&product=${product.id}" class="suggestion-item" data-product-id="${product.id}">
                             <img src="${product.img}" alt="${product.name}" onerror="this.style.display='none'">
                             <div class="info">
                                 <div class="name">${product.name}</div>
@@ -108,12 +124,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 suggestionsContainer.classList.add('active');
             } else {
                 suggestionsContainer.classList.remove('active');
+                suggestionsContainer.innerHTML = '';
             }
         });
+
+        // Đóng gợi ý khi click ra ngoài search bar
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.search-bar')) {
                 suggestionsContainer.classList.remove('active');
             }
         });
     }
+
+    // Lắng nghe sự kiện storage để cập nhật giỏ hàng khi có thay đổi từ tab khác
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'cart') {
+            console.log("Phát hiện thay đổi giỏ hàng từ tab khác, đang tự động cập nhật...");
+            updateCartCounter();
+            // Nếu đây là trang giỏ hàng, có thể gọi renderInitialPage() từ cart-logic.js nếu nó được include
+        }
+        // Nếu sản phẩm thay đổi (tồn kho), bạn có thể cần cập nhật các nút "Thêm vào giỏ"
+        if (event.key === 'products') {
+             console.log("Phát hiện thay đổi sản phẩm từ tab khác, đang cập nhật nút giỏ hàng...");
+             // rebindAddToCartButtons(); // Cần đảm bảo hàm này hoạt động tốt và không gây lỗi trùng lặp
+        }
+    });
 });
