@@ -6,14 +6,17 @@ function getProductsFromStorage() {
     }
     try {
         return storedProducts ? JSON.parse(storedProducts) : [];
-    } catch (e) { return []; }
+    } catch (e) {
+        console.error("Lỗi khi phân tích cú pháp dữ liệu sản phẩm từ LocalStorage:", e);
+        return [];
+    }
 }
 
 function renderProducts(container, products) {
     if (!container) return;
     container.innerHTML = products.map(product => {
-        const priceHTML = product.originalPrice 
-            ? `<div class="price-container"><span class="original-price">${product.originalPrice.toLocaleString('vi-VN')}₫</span><span class="sale-price blinking">${product.price.toLocaleString('vi-VN')}₫</span></div>` 
+        const priceHTML = product.originalPrice
+            ? `<div class="price-container"><span class="original-price">${product.originalPrice.toLocaleString('vi-VN')}₫</span><span class="sale-price blinking">${product.price.toLocaleString('vi-VN')}₫</span></div>`
             : `<p class="price">${product.price.toLocaleString('vi-VN')}₫</p>`;
         return `<div class="product-item">
                     <img src="${product.img}" alt="${product.name}" onerror="this.src='images/placeholder.png';">
@@ -39,13 +42,14 @@ function renderHomepageContent() {
     const todayDealGrid = document.getElementById('today-deal-grid');
     const superCheapGrid = document.getElementById('super-cheap-grid');
     
-    const products = getProductsFromStorage(); 
+    const products = getProductsFromStorage();
     const shuffledProducts = [...products].sort(() => 0.5 - Math.random());
 
     if (featuredGrid) {
-        const mandatoryProductId = 'p44';
+        const mandatoryProductId = 'p44'; // Ví dụ ID sản phẩm bắt buộc (nếu có)
         const mandatoryProduct = products.find(p => p.id === mandatoryProductId);
         const otherProducts = products.filter(p => p.id !== mandatoryProductId);
+        // Lấy ngẫu nhiên 7 sản phẩm khác hoặc ít hơn nếu không đủ
         const randomOthers = otherProducts.sort(() => 0.5 - Math.random()).slice(0, 7);
         let featuredProducts = mandatoryProduct ? [mandatoryProduct, ...randomOthers] : shuffledProducts.slice(0, 8);
         renderProducts(featuredGrid, featuredProducts.sort(() => 0.5 - Math.random()));
@@ -58,8 +62,18 @@ function renderHomepageContent() {
         renderProducts(superCheapGrid, cheapestProducts);
     }
 }
+function scrollFunctionForBackToTop() {
+    const backToTopButton = document.getElementById("backToTop");
+    if (!backToTopButton) return;
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        backToTopButton.style.display = "flex"; 
+    } else {
+        backToTopButton.style.display = "none"; 
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
+
     const slides = document.querySelectorAll(".slide-image");
     if (slides.length > 1) {
         let currentSlide = 0;
@@ -70,10 +84,19 @@ document.addEventListener("DOMContentLoaded", function() {
             slides[currentSlide].classList.add('active');
         }, 4000);
     }
-
     renderHomepageContent();
-});
+    const backToTopButton = document.getElementById("backToTop");
 
+    if (backToTopButton) { 
+        window.onscroll = scrollFunctionForBackToTop;
+        backToTopButton.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+});
 window.addEventListener('storage', (event) => {
     if (event.key === 'products') {
         console.log("Phát hiện thay đổi sản phẩm từ tab khác, đang tự động cập nhật...");
