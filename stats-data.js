@@ -1,0 +1,3 @@
+
+const monthlyRevenueData = { labels: ["T1/24", "T2/24", "T3/24", "T4/24", "T5/24", "T6/24", "T7/24", "T8/24", "T9/24", "T10/24", "T11/24", "T12/24", "T1/25", "T2/25", "T3/25", "T4/25", "T5/25", "T6/25"], data: [85100000, 76500000, 92300000, 88100000, 95400000, 105600000, 98700000, 110200000, 115800000, 125100000, 145900000, 185300000, 90500000, 85300000, 55600000, 78250000, 62100000, 95300000] };
+const bestSellingProductsData = { labels: ["Mì Hảo Hảo", "Sữa Tươi Tiệt Trùng", "Bia Tiger", "Nước Ngọt Coca Cola", "Trứng Gà Quê", "Dầu Ăn Neptune", "Khăn Sợi Mềm", "Nước Mắm", "Bia Heiniken", "Giấy Ăn", "Táo Rockit", "Nước Ngọt Pepsi", "Kem Đánh Răng", "Bút Bi Thiên Long", "Xoài Keo Vàng"], data: [1250, 980, 750, 680, 650, 550, 510, 480, 450, 420, 380, 350, 310, 280, 250] };

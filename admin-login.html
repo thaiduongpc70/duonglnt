@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập Quản trị</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-login-body">
+    <div class="login-container">
+        <h2>Đăng nhập Hệ thống Quản trị</h2>
+        <form id="admin-login-form">
+            <div class="form-group">
+                <label for="username">Tài khoản</label>
+                <input type="text" id="username" value="0852076750" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" value="admin" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-message');
+            if (user === '0852076750' && pass === 'admin') {
+                sessionStorage.setItem('isAdminLoggedIn', 'true');
+                window.location.href = 'dashboard.html';
+            } else {
+                errorMsg.textContent = 'Tài khoản hoặc mật khẩu không chính xác.';
+            }
+        });
+    </script>
+</body>
+</html>

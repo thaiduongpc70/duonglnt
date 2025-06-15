@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Phiếu nhập</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="admin-page-body">
+    <script>if(sessionStorage.getItem('isAdminLoggedIn')!=='true'){window.location.href='admin-login.html';}</script>
+    
+    <div class="admin-layout">
+         <aside class="sidebar">
+            <div class="sidebar-header"><h3>Chào Mừng Lê Nguyễn Thái Dương</h3></div>
+            <nav class="admin-nav">
+                 <ul>
+                    <li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Bảng điều khiển</a></li>
+                    <li><a href="products-admin.html"><i class="fa-solid fa-box-archive"></i> Quản lý Sản phẩm</a></li>
+                    <li><a href="orders.html"><i class="fa-solid fa-receipt"></i> Quản lý Hóa đơn</a></li>
+                    <li><a href="promotions.html"><i class="fa-solid fa-tags"></i> Quản lý Giảm giá</a></li>
+                    <li><a href="stock-in.html" class="active"><i class="fa-solid fa-dolly"></i> Quản lý Phiếu nhập</a></li>
+                    <li><a href="stats.html"><i class="fa-solid fa-calculator"></i> Thống kê Chi tiết</a></li>
+                    <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="admin-main-content">
+            <header class="admin-header"><h1>Quản lý Phiếu nhập</h1></header>
+            <main class="admin-content">
+                <div class="action-bar"><button id="show-stock-in-modal-btn" class="btn btn-primary">Tạo Phiếu nhập mới</button></div>
+                <div class="table-container">
+                    <h3>Lịch sử nhập hàng</h3>
+                    <table id="stock-in-history-table">
+                        <thead><tr><th>Mã Phiếu</th><th>Nhà Cung Cấp</th><th>Ngày Nhập</th><th>Tổng Tiền</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="stock-in-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2>Tạo Phiếu Nhập Mới</h2>
+                <button id="close-stock-in-modal-btn" class="close-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="stock-in-form">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Nhà Cung Cấp</label><select id="supplier-select" required></select></div>
+                        <div class="form-group"><label>Ngày Nhập</label><input type="date" id="stock-in-date" required></div>
+                    </div>
+                    <hr>
+                    <h4>Thêm sản phẩm vào phiếu</h4>
+                    <div class="form-grid-three">
+                        <div class="form-group"><label>Sản phẩm</label><select id="stock-in-product-select"></select></div>
+                        <div class="form-group"><label>Số lượng</label><input type="number" id="stock-in-quantity" min="1"></div>
+                        <button type="button" id="add-item-to-slip-btn" class="btn btn-secondary">Thêm</button>
+                    </div>
+                    
+                    <div class="table-container" style="margin-top: 20px;">
+                        <table id="slip-items-table">
+                            <thead><tr><th>Sản phẩm</th><th>Số lượng</th><th>Đơn giá nhập</th><th>Thành tiền</th><th>Xóa</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="modal-footer">
+                        <h3>Tổng cộng: <span id="slip-total-amount">0 ₫</span></h3>
+                        <button type="submit" class="btn btn-primary">Lưu Phiếu Nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="products-data.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

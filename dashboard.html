@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-page-body">
+    <script>if(sessionStorage.getItem('isAdminLoggedIn')!=='true'){window.location.href='admin-login.html';}</script>
+
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h3>Chào Mừng Lê Nguyễn Thái Dương</h3></div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="dashboard.html" class="active"><i class="fa-solid fa-chart-line"></i> Bảng điều khiển</a></li>
+                    <li><a href="products-admin.html"><i class="fa-solid fa-box-archive"></i> Quản lý Sản phẩm</a></li>
+                    <li><a href="orders.html"><i class="fa-solid fa-receipt"></i> Quản lý Hóa đơn</a></li>
+                    <li><a href="promotions.html"><i class="fa-solid fa-tags"></i> Quản lý Giảm giá</a></li>
+                    <li><a href="stock-in.html"><i class="fa-solid fa-dolly"></i> Quản lý Phiếu nhập</a></li>
+                    <li><a href="stats.html"><i class="fa-solid fa-calculator"></i> Thống kê Chi tiết</a></li>
+                    <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="admin-main-content">
+            <header class="admin-header"><h1>Bảng điều khiển</h1></header>
+            <main class="admin-content">
+                
+                <div class="content-panel">
+                
+                    <div class="dashboard-cards" id="stat-cards">
+                        <div class="stat-card"><div class="icon revenue"><i class="fa-solid fa-dollar-sign"></i></div><div class="info"><h4>Doanh thu tháng</h4><p id="monthly-revenue-stat">150.9M ₫</p></div></div>
+                        <div class="stat-card"><div class="icon orders"><i class="fa-solid fa-box"></i></div><div class="info"><h4>Đơn hàng mới</h4><p id="new-orders-stat">35</p></div></div>
+                        <div class="stat-card"><div class="icon members"><i class="fa-solid fa-user-plus"></i></div><div class="info"><h4>Hội viên mới</h4><p id="new-members-stat">56</p></div></div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="chart-container">
+                            <h3>Phân tích doanh thu</h3>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        <div class="table-container">
+                            <h3>Hóa đơn gần đây</h3>
+                            <table id="recent-orders-table">
+                                <thead><tr><th>Mã HĐ</th><th>Khách hàng</th><th>Tổng tiền</th><th>Trạng thái</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                </main>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
