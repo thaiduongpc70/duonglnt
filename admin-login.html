@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập Quản trị</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,7 +18,12 @@
                 <label for="password">Mật khẩu</label>
                 <input type="password" id="password" value="admin" required>
             </div>
-            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+
+            <div class="admin-button-group">
+                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                <a href="login.html" class="btn btn-secondary">Quay lại</a>
+            </div>
+            
             <p id="error-message" class="error-message"></p>
         </form>
     </div>
