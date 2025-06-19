@@ -57,14 +57,12 @@ function addToCart(productId, buttonElement) {
     const existingProductIndex = cart.findIndex(item => item.id === productId);
 
     if (existingProductIndex > -1) {
-        // Nếu sản phẩm đã có trong giỏ, kiểm tra xem có vượt quá số lượng tồn kho không
         if (productData.quantity !== undefined && (cart[existingProductIndex].quantity + 1) > productData.quantity) {
             showInlineFeedback(buttonElement, 'Không đủ hàng trong kho!');
             return;
         }
         cart[existingProductIndex].quantity++;
     } else {
-        // Nếu sản phẩm chưa có trong giỏ, thêm mới (với số lượng 1)
         const newCartItem = { ...productData, quantity: 1 };
         cart.push(newCartItem);
     }
@@ -72,11 +70,8 @@ function addToCart(productId, buttonElement) {
     saveCart(cart);
     showInlineFeedback(buttonElement, '✔ Đã thêm vào giỏ!');
 }
-
-
 function rebindAddToCartButtons() {
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        // Clone và thay thế nút để loại bỏ các event listener cũ
         const newButton = button.cloneNode(true);
         button.parentNode.replaceChild(newButton, button);
 
@@ -135,18 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Lắng nghe sự kiện storage để cập nhật giỏ hàng khi có thay đổi từ tab khác
     window.addEventListener('storage', (event) => {
         if (event.key === 'cart') {
             console.log("Phát hiện thay đổi giỏ hàng từ tab khác, đang tự động cập nhật...");
             updateCartCounter();
-            // Nếu đây là trang giỏ hàng, có thể gọi renderInitialPage() từ cart-logic.js nếu nó được include
         }
-        // Nếu sản phẩm thay đổi (tồn kho), bạn có thể cần cập nhật các nút "Thêm vào giỏ"
         if (event.key === 'products') {
              console.log("Phát hiện thay đổi sản phẩm từ tab khác, đang cập nhật nút giỏ hàng...");
-             // rebindAddToCartButtons(); // Cần đảm bảo hàm này hoạt động tốt và không gây lỗi trùng lặp
         }
     });
 });

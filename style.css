@@ -525,3 +525,84 @@ th, td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; }
     }
     /* ======================================================= */
 }
+/* =================================================================== */
+/* MODALS & POPUPS (Tối ưu hóa)
+/* =================================================================== */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Tăng độ mờ cho nền */
+    display: flex; justify-content: center; align-items: center; z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    padding: 15px; /* Thêm padding để modal không bị dính vào cạnh màn hình mobile */
+    box-sizing: border-box;
+}
+.modal-overlay.hidden { opacity: 0; pointer-events: none; }
+
+.modal-content {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 12px; /* Tăng bo góc cho mềm mại hơn */
+    width: 100%; 
+    max-width: 480px; /* Điều chỉnh lại độ rộng tối đa */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center; /* Căn giữa nội dung bên trong */
+}
+
+/* === Các style dành riêng cho QR Code Modal === */
+#qr-modal .modal-content h4 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#qr-modal .modal-content p {
+    margin-top: 0;
+    margin-bottom: 25px; /* Tăng khoảng cách dưới */
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Style cho ảnh QR */
+.qr-code-img {
+    display: block;
+    width: 100%;
+    max-width: 280px; /* Kích thước phù hợp cho laptop, dễ dàng quét */
+    height: auto;
+    margin: 0 auto 25px auto; /* Căn giữa và tạo khoảng cách */
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 10px; /* Tạo viền trắng bên trong cho mã QR */
+    box-sizing: border-box;
+    background-color: white;
+}
+
+#qr-countdown {
+    font-weight: 500;
+    color: #e52025;
+    font-size: 16px;
+    margin: 0; /* Reset margin */
+}
+
+/* =================================================================== */
+/* MEDIA QUERIES (Tối ưu cho mobile)
+/* =================================================================== */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 25px 20px; /* Giảm padding ngang trên màn hình nhỏ */
+    }
+
+    #qr-modal .modal-content h4 {
+        font-size: 20px; /* Giảm nhẹ kích thước tiêu đề */
+    }
+
+    .qr-code-img {
+        max-width: 240px; /* Điều chỉnh kích thước QR code cho vừa vặn hơn */
+    }
+    
+    #qr-modal .modal-content p {
+        margin-bottom: 20px;
+    }
+}
